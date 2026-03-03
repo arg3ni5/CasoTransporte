@@ -305,7 +305,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="database\" />
+    <Folder Include="Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="UI\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
