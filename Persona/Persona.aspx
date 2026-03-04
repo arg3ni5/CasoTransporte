@@ -62,18 +62,27 @@
         ErrorMessage="Es necesario indicar el correo"
         ControlToValidate="txtCorreo" Display="Dynamic"></asp:RequiredFieldValidator>
 
-    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary my-2" OnClick="btnGuardar_Click" />
-    <asp:Label ID="lblResultado" runat="server" Text="" CssClass="control-label"></asp:Label>
-    
+    <asp:HiddenField ID="hfIdPersona" runat="server" />
+
+    <div class="py-3 d-flex gap-2">
+        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardar_Click" />
+        <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CssClass="btn btn-warning" OnClick="btnActualizar_Click" Visible="false" />
+    </div>
+
+    <%--<asp:Label ID="lblResultado" runat="server" Text="" CssClass="control-label"></asp:Label>--%>
+
     <asp:GridView ID="gvPersonas" CssClass="table table-striped table-hover" HeaderStyle-CssClass="table-primary"
-        runat="server" AutoGenerateColumns="False" DataKeyNames="IDPersona" DataSourceID="SqlDataSource1"
+        runat="server" AutoGenerateColumns="False"
+        DataKeyNames="IDPersona"
+        DataSourceID="SqlDataSource1"
         OnRowEditing="gvPersonas_RowEditing"
         OnSelectedIndexChanged="gvPersonas_SelectedIndexChanged"
-        OnRowDeleting="gvPersonas_RowDeleting"> 
-        <Columns>            
+        OnRowDeleting="gvPersonas_RowDeleting">
+        <Columns>
             <asp:CommandField ShowSelectButton="True" ControlStyle-CssClass="btn btn-primary" SelectText="<i class='bi bi-pencil'>" />
             <%--<asp:CommandField ShowEditButton="True" ControlStyle-CssClass="btn btn-primary" EditText="<i class='bi bi-pencil'>" />--%>
-            <asp:BoundField DataField="IDPersona" HeaderText="IDPersona" InsertVisible="False" ReadOnly="True" SortExpression="IDPersona" />
+            <asp:BoundField DataField="IDPersona" HeaderText="IDPersona" ControlStyle-CssClass="d-none" visible="False"
+            InsertVisible="False" ReadOnly="True" SortExpression="IDPersona" />
             <asp:BoundField ControlStyle-CssClass="d-none" DataField="TipoDocumento" HeaderText="TipoDocumento" SortExpression="TipoDocumento" />
             <asp:BoundField DataField="Documento" HeaderText="Documento" SortExpression="Documento" />
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />

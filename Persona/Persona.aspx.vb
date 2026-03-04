@@ -12,7 +12,7 @@ Public Class Persona
 
         'Validar campos obligatorios 
         If txtFechaNac.Text = "" Then
-            lblResultado.Text = "Por favor, complete todos los campos obligatorios."
+            'lblResultado.Text = "Por favor, complete todos los campos obligatorios."
             Return
         End If
 
@@ -23,7 +23,7 @@ Public Class Persona
         persona.TipoDocumento = ddlTipoDocumento.SelectedItem.Value
         persona.NumeroDocumento = txtDocumento.Text.Trim()
 
-        lblResultado.Text = persona.Resumen()
+        'lblResultado.Text = persona.Resumen()
         Dim errorMessage As String = ""
         Dim resultado = db.CrearPersona(persona, errorMessage)
 
@@ -53,15 +53,67 @@ Public Class Persona
     End Sub
 
     Protected Sub gvPersonas_SelectedIndexChanged(sender As Object, e As EventArgs)
-        Dim selectedRow As GridViewRow = gvPersonas.SelectedRow
-        Dim id = selectedRow.Cells(1).Text
+        hfIdPersona.Value = gvPersonas.DataKeys(gvPersonas.SelectedIndex).Value
+        Dim id As Integer = Convert.ToInt32(hfIdPersona.Value)
 
         Dim errorMessage As String = ""
         Dim persona As Models.Persona = db.ConsultarPersona(id, errorMessage)
 
-        txtDocumento.Text = selectedRow.Cells(3).Text
-        txtNombre.Text = HttpUtility.HtmlDecode(selectedRow.Cells(4).Text)
-        txtApellidos.Text = selectedRow.Cells(5).Text
-        ddlTipoDocumento.SelectedValue = selectedRow.Cells(2).Text
+        If persona Is Nothing Then
+            SwalUtils.ShowSwalError(Me, If(errorMessage = "", "No se pudo cargar la persona.", errorMessage))
+            Return
+        End If
+
+        txtDocumento.Text = persona.NumeroDocumento
+        txtNombre.Text = persona.Nombre
+        txtApellidos.Text = persona.Apellidos
+        ddlTipoDocumento.SelectedValue = persona.TipoDocumento
+        txtFechaNac.Text = persona.FechaNacimiento.ToString("yyyy-MM-dd")
+        txtCorreo.Text = persona.Correo
+
+        btnGuardar.Visible = False
+        btnActualizar.Visible = True
+    End Sub
+
+    Protected Sub btnActualizar_Click(sender As Object, e As EventArgs)
+        Dim persona As New Models.Persona()
+        persona.IdPersona = Convert.ToInt32(hfIdPersona.Value)
+
+        'Validar campos obligatorios 
+        If txtFechaNac.Text = "" Then
+            'lblResultado.Text = "Por favor, complete todos los campos obligatorios."
+            Return
+        End If
+
+        persona.Nombre = txtNombre.Text.Trim()
+        persona.Apellidos = txtApellidos.Text.Trim()
+        persona.FechaNacimiento = txtFechaNac.Text.Trim()
+        persona.Correo = txtCorreo.Text.Trim()
+        persona.TipoDocumento = ddlTipoDocumento.SelectedItem.Value
+        persona.NumeroDocumento = txtDocumento.Text.Trim()
+
+        'lblResultado.Text = persona.Resumen()
+        Dim errorMessage As String = ""
+        Dim resultado = db.ActualizarPersona(persona, errorMessage)
+
+        If resultado Then
+            SwalUtils.ShowSwal(Me, "Persona actualizada exitosamente.")
+            gvPersonas.DataBind()
+            btnGuardar.Visible = True
+            btnActualizar.Visible = False
+            hfIdPersona.Value = ""
+            LimpiarCampos()
+        Else
+            SwalUtils.ShowSwalError(Me, errorMessage)
+        End If
+    End Sub
+
+    Private Sub LimpiarCampos()
+        txtDocumento.Text = ""
+        txtNombre.Text = ""
+        txtApellidos.Text = ""
+        ddlTipoDocumento.SelectedIndex = 0
+        txtFechaNac.Text = ""
+        txtCorreo.Text = ""
     End Sub
 End Class

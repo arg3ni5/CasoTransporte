@@ -73,6 +73,8 @@
             End Set
         End Property
 
+        Public Property IdPersona As Integer
+
         Public Function Resumen() As String
             Return $"Nombre: {Nombre} {Apellidos} - {Correo}"
         End Function
