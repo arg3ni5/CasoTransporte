@@ -242,6 +242,7 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Multa.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -316,9 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="database\" />
     <Folder Include="Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="UI\" />
     <Folder Include="Utils\" />
