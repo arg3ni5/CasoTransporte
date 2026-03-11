@@ -145,6 +145,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="frmVehiculos.aspx" />
     <Content Include="Global.asax" />
     <Content Include="database\00_base\01_create_db.sql" />
     <Content Include="database\01_personas_usuarios\01_schema.sql" />
@@ -212,7 +213,6 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="Vehiculo.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
@@ -240,10 +240,19 @@
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmVehiculos.aspx.designer.vb">
+      <DependentUpon>frmVehiculos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmVehiculos.aspx.vb">
+      <DependentUpon>frmVehiculos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Vehiculo.vb" />
+    <Compile Include="Models\Vehiculo.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -318,7 +327,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="database\" />
     <Folder Include="Data\" />
     <Folder Include="Services\" />
     <Folder Include="UI\" />
