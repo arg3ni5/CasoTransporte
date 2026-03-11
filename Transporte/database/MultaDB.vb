@@ -1,15 +1,16 @@
 ﻿Imports Transporte.Models
 
 Public Class MultaDB
-
     Private db As New DbHelper
     Public Function CrearMulta(ByVal modMulta As Models.Multa, ByRef errorMessage As String) As Boolean
         Using db.GetConnection()
-            Dim query As String = "INSERT INTO dbo.TipoMulta (Descripcion, MontoBase, Activa) VALUES (@Descripcion, @MontoBase, @Activa)"
+            Dim query As String = "INSERT INTO dbo.Multas (IdVehiculo, IdTipoMulta, Fecha, MontoAplicado, Pagada) VALUES (@IdVehiculo, @IdTipoMulta, @Fecha, @MontoAplicado, @Pagada)"
             Dim parameters As New Dictionary(Of String, Object) From {
-                {"@Descripcion", modTipoMulta.Descripcion},
-                {"@MontoBase", modTipoMulta.MontoBase},
-                {"@Activa", modTipoMulta.Activa}
+                {"@IdVehiculo", modMulta.IdVehiculo},
+                {"@IdTipoMulta", modMulta.IdTipoMulta},
+                {"@Fecha", modMulta.Fecha},
+                {"@MontoAplicado", modMulta.MontoAplicado},
+                {"@Pagada", modMulta.Pagada}
             }
 
             Return db.ExecuteNonQuery(query, parameters, errorMessage)
@@ -18,7 +19,7 @@ Public Class MultaDB
     End Function
 
     Public Function EliminarMulta(idMulta As Integer, ByRef errorMessage As String) As Boolean
-        Dim query As String = "DELETE FROM dbo.TipoMulta WHERE IdTipoMulta = @IdTipoMulta"
+        Dim query As String = "DELETE FROM dbo.Multas WHERE IdMulta = @IdMulta"
         Dim parameters As New Dictionary(Of String, Object) From {
             {"@IdMulta", idMulta}
         }
@@ -27,8 +28,8 @@ Public Class MultaDB
 
     End Function
 
-    Public Function ConsultarMulta(idMulta As Integer, ByRef errorMessage As String) As Models.TipoMulta
-        Dim query As String = "SELECT * FROM dbo.TipoMulta WHERE IdTipoMulta = @IdTipoMulta"
+    Public Function ConsultarMulta(idMulta As Integer, ByRef errorMessage As String) As Models.Multa
+        Dim query As String = "SELECT * FROM dbo.Multas WHERE IdMulta = @IdMulta"
         Dim parameters As New Dictionary(Of String, Object) From {
             {"@IdMulta", idMulta}
         }
@@ -36,25 +37,29 @@ Public Class MultaDB
         Dim dt As DataTable = db.ExecuteQuery(query, parameters, errorMessage)
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
             Dim row As DataRow = dt.Rows(0)
-            Dim tipoMulta As New Models.TipoMulta() With {
+            Dim multa As New Models.Multa() With {
+                .IdMulta = Convert.ToInt32(row("IdMulta").ToString()),
+                .IdVehiculo = Convert.ToInt32(row("IdVehiculo").ToString()),
                 .IdTipoMulta = Convert.ToInt32(row("IdTipoMulta").ToString()),
-                .Descripcion = row("Descripcion").ToString(),
-                .MontoBase = Convert.ToDecimal(row("MontoBase")),
-                .Activa = row("Activa").ToString()
+                .Fecha = Convert.ToDateTime(row("Fecha").ToString()),
+                .MontoAplicado = Convert.ToDecimal(row("MontoAplicado").ToString()),
+                .Pagada = row("Pagada").ToString()
             }
-            Return tipoMulta
+            Return multa
         End If
         Return Nothing
 
     End Function
 
-    Public Function ModificarMulta(modTipoMulta As Models.TipoMulta, ByRef errorMessage As String) As Boolean
-        Dim query As String = "UPDATE dbo.TipoMulta SET Descripcion = @Descripcion, MontoBase = @MontoBase, Activa = @Activa WHERE IdTipoMulta = @IdTipoMulta"
+    Public Function ModificarMulta(modMulta As Models.Multa, ByRef errorMessage As String) As Boolean
+        Dim query As String = "UPDATE dbo.Multas SET IdVehiculo = @IdVehiculo, IdTipoMulta = @IdTipoMulta, Fecha = @Fecha, MontoAplicado = @MontoAplicado, Pagada = @Pagada WHERE IdMulta = @IdMulta"
         Dim parameters As New Dictionary(Of String, Object) From {
-            {"@Descripcion", modTipoMulta.Descripcion},
-            {"@MontoBase", modTipoMulta.MontoBase},
-            {"@Activa", modTipoMulta.Activa},
-            {"@IdTipoMulta", modTipoMulta.IdTipoMulta}
+                {"@IdVehiculo", modMulta.IdVehiculo},
+                {"@IdTipoMulta", modMulta.IdTipoMulta},
+                {"@Fecha", modMulta.Fecha},
+                {"@MontoAplicado", modMulta.MontoAplicado},
+                {"@Pagada", modMulta.Pagada},
+                {"@IdMulta", modMulta.IdMulta}
         }
         Return db.ExecuteNonQuery(query, parameters, errorMessage)
     End Function
