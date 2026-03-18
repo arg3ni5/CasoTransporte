@@ -143,6 +143,14 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="database\04_multas\Stored Procedures\Multas\sp_Elimina_Multa.sql" />
+    <Content Include="database\04_multas\Stored Procedures\Multas\sp_Inserta_Multa.sql" />
+    <Content Include="database\04_multas\Stored Procedures\Multas\sp_Modifica_Multa.sql" />
+    <Content Include="database\04_multas\Stored Procedures\Multas\sp_Consulta_Multa.sql" />
+    <Content Include="database\04_multas\Stored Procedures\TipoMultas\sp_Modifica_TipoMulta.sql" />
+    <Content Include="database\04_multas\Stored Procedures\TipoMultas\sp_Consulta_TipoMulta.sql" />
+    <Content Include="database\04_multas\Stored Procedures\TipoMultas\sp_Eliminar_TipoMulta.sql" />
+    <Content Include="database\04_multas\Stored Procedures\TipoMultas\sp_Inserta_TipoMulta.sql" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -329,7 +337,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="database\04_multas\Stored Procedures\" />
     <Folder Include="Data\" />
     <Folder Include="Services\" />
     <Folder Include="UI\" />
