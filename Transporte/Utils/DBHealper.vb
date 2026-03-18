@@ -17,64 +17,67 @@ Public Class DbHealper
     End Function
 
     ' INSERT TipoMulta
-    Public Function InsertTipoMulta(descripcion As String, montoBase As Decimal, activa As Boolean, ByRef errorMessage As String) As Boolean
-        Dim query As String = "INSERT INTO TipoMulta (Descripcion, MontoBase, Activa) VALUES (@Descripcion, @MontoBase, @Activa)"
-        Dim parameters As New Dictionary(Of String, Object) From {
-            {"@Descripcion", descripcion},
-            {"@MontoBase", montoBase},
-            {"@Activa", activa}
-        }
-        Return ExecuteNonQuery(query, parameters, errorMessage)
-    End Function
+    'Public Function InsertTipoMulta(descripcion As String, montoBase As Decimal, activa As Boolean, ByRef errorMessage As String) As Boolean
+    '    Dim query As String = "INSERT INTO TipoMulta (Descripcion, MontoBase, Activa) VALUES (@Descripcion, @MontoBase, @Activa)"
+    '    Dim parameters As New Dictionary(Of String, Object) From {
+    '        {"@Descripcion", descripcion},
+    '        {"@MontoBase", montoBase},
+    '        {"@Activa", activa}
+    '    }
+    '    Return ExecuteNonQuery(query, parameters, errorMessage)
+    'End Function
 
-    ' UPDATE TipoMulta
-    Public Function UpdateTipoMulta(id As Integer, descripcion As String, montoBase As Decimal, activa As Boolean, ByRef errorMessage As String) As Boolean
-        Dim query As String = "UPDATE TipoMulta SET Descripcion=@Descripcion, MontoBase=@MontoBase, Activa=@Activa WHERE IdTipoMulta=@Id"
-        Dim parameters As New Dictionary(Of String, Object) From {
-            {"@Id", id},
-            {"@Descripcion", descripcion},
-            {"@MontoBase", montoBase},
-            {"@Activa", activa}
-        }
-        Return ExecuteNonQuery(query, parameters, errorMessage)
-    End Function
+    '' UPDATE TipoMulta
+    'Public Function UpdateTipoMulta(id As Integer, descripcion As String, montoBase As Decimal, activa As Boolean, ByRef errorMessage As String) As Boolean
+    '    Dim query As String = "UPDATE TipoMulta SET Descripcion=@Descripcion, MontoBase=@MontoBase, Activa=@Activa WHERE IdTipoMulta=@Id"
+    '    Dim parameters As New Dictionary(Of String, Object) From {
+    '        {"@Id", id},
+    '        {"@Descripcion", descripcion},
+    '        {"@MontoBase", montoBase},
+    '        {"@Activa", activa}
+    '    }
+    '    Return ExecuteNonQuery(query, parameters, errorMessage)
+    'End Function
 
-    ' DELETE TipoMulta
-    Public Function DeleteTipoMulta(id As Integer, ByRef errorMessage As String) As Boolean
-        Dim query As String = "DELETE FROM TipoMulta WHERE IdTipoMulta=@Id"
-        Dim parameters As New Dictionary(Of String, Object) From {
-            {"@Id", id}
-        }
-        Return ExecuteNonQuery(query, parameters, errorMessage)
-    End Function
+    '' DELETE TipoMulta
+    'Public Function DeleteTipoMulta(id As Integer, ByRef errorMessage As String) As Boolean
+    '    Dim query As String = "DELETE FROM TipoMulta WHERE IdTipoMulta=@Id"
+    '    Dim parameters As New Dictionary(Of String, Object) From {
+    '        {"@Id", id}
+    '    }
+    '    Return ExecuteNonQuery(query, parameters, errorMessage)
+    'End Function
 
-    ' SELECT TipoMulta
-    Public Function GetTipoMulta(Optional id As Integer? = Nothing, Optional ByRef errorMessage As String = "") As DataTable
-        Dim query As String = "SELECT IdTipoMulta, Descripcion, MontoBase, Activa FROM TipoMulta"
-        Dim parameters As Dictionary(Of String, Object) = Nothing
+    '' SELECT TipoMulta
+    'Public Function GetTipoMulta(Optional id As Integer? = Nothing, Optional ByRef errorMessage As String = "") As DataTable
+    '    Dim query As String = "SELECT IdTipoMulta, Descripcion, MontoBase, Activa FROM TipoMulta"
+    '    Dim parameters As Dictionary(Of String, Object) = Nothing
 
-        If id.HasValue Then
-            query &= " WHERE IdTipoMulta=@Id"
-            parameters = New Dictionary(Of String, Object) From {
-                {"@Id", id.Value}
-            }
-        End If
+    '    If id.HasValue Then
+    '        query &= " WHERE IdTipoMulta=@Id"
+    '        parameters = New Dictionary(Of String, Object) From {
+    '            {"@Id", id.Value}
+    '        }
+    '    End If
 
-        Return ExecuteQuery(query, parameters, errorMessage)
-    End Function
+    '    Return ExecuteQuery(query, parameters, errorMessage)
+    'End Function
 
     ' Método genérico para ejecutar INSERT/UPDATE/DELETE
-    Private Function ExecuteNonQuery(query As String, parameters As Dictionary(Of String, Object), ByRef errorMessage As String) As Boolean
+    Public Function ExecuteNonQuery(query As String, parameters As List(Of SqlParameter), ByRef errorMessage As String) As Boolean
         If String.IsNullOrWhiteSpace(query) Then
             Throw New ArgumentException("La consulta no puede estar vacía")
         End If
+
         Using conn As SqlConnection = GetConnection()
             Using cmd As New SqlCommand(query, conn)
+
                 If parameters IsNot Nothing Then
-                    For Each p In parameters
-                        cmd.Parameters.AddWithValue(p.Key, p.Value)
-                    Next
+                    cmd.Parameters.AddRange(parameters.ToArray())
                 End If
+
+                cmd.CommandType = CommandType.StoredProcedure
+
                 Try
                     cmd.ExecuteNonQuery()
                     Return True
@@ -87,19 +90,27 @@ Public Class DbHealper
     End Function
 
     ' Método genérico para ejecutar SELECT
-    Private Function ExecuteQuery(query As String, parameters As Dictionary(Of String, Object), ByRef errorMessage As String) As DataTable
+    Public Function ExecuteQuery(ByRef errorMessage As String, query As String, esStoredProcedure As Boolean, Optional parameters As List(Of SqlParameter) = Nothing) As DataTable
         If String.IsNullOrWhiteSpace(query) Then
             Throw New ArgumentException("La consulta no puede estar vacía")
         End If
+
         Dim dt As New DataTable()
         Using conn As SqlConnection = GetConnection()
             Using cmd As New SqlCommand(query, conn)
                 If parameters IsNot Nothing Then
-                    For Each p In parameters
-                        cmd.Parameters.AddWithValue(p.Key, p.Value)
-                    Next
+                    cmd.Parameters.AddRange(parameters.ToArray())
                 End If
+
+                If esStoredProcedure Then
+                    cmd.CommandType = CommandType.StoredProcedure
+                End If
+
                 Try
+                    If conn.State = ConnectionState.Closed Then
+                        conn.Open()
+                    End If
+
                     Using adapter As New SqlDataAdapter(cmd)
                         adapter.Fill(dt)
                     End Using
