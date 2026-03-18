@@ -1,9 +1,11 @@
 ﻿Imports System.Configuration
 Imports System.Data.SqlClient
+Imports System.Security.Cryptography
 Imports Transporte.Models
 Imports Transporte.Utils
 Public Class Usuarios1
     Inherits System.Web.UI.Page
+    Private db As New UsuarioDB()
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
@@ -12,19 +14,9 @@ Public Class Usuarios1
     End Sub
 
     Private Sub CargarPersonas()
-        Dim connString As String = ConfigurationManager.ConnectionStrings("ConexionDB").ConnectionString
-
-        Using conn As New SqlConnection(connString)
-            Dim query As String = "SELECT IdPersona, Username, PasswordHash, Rol, Activo FROM Usuarios"
-            Dim cmd As New SqlCommand(query, conn)
-            Dim da As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable()
-
-            da.Fill(dt)
-
-            gvUsuarios.DataSource = dt
-            gvUsuarios.DataBind()
-        End Using
+        Dim errorMessage As String = ""
+        gvUsuarios.DataSource = db.CargarPersonas(errorMessage)
+        gvUsuarios.DataBind()
     End Sub
 
     Protected Sub gvUsuarios_RowCommand(sender As Object, e As GridViewCommandEventArgs)
@@ -39,7 +31,30 @@ Public Class Usuarios1
         End If
         usuarios.IdPersona = Convert.ToInt32(txtIdPersona.Text.Trim())
         usuarios.Username = txtUsername.Text.Trim()
+        usuarios.PasswordHash = HashPassword(txtPassword.Text.Trim())
+        usuarios.Rol = ddlRol.SelectedValue
+        usuarios.Activo = chkActivo.Checked
+
+        Dim errorMessage As String = ""
+        Dim resultado = db.CrearUsuario(usuarios, errorMessage)
+
+        If resultado Then
+            SwalUtils.ShowSwal(Me, "Usuario creado exitosamente.")
+            CargarPersonas()
+
+        Else
+            SwalUtils.ShowSwalError(Me, errorMessage)
+        End If
+
 
 
     End Sub
+
+    Private Function HashPassword(password As String) As String
+        Using sha256 As SHA256 = SHA256.Create()
+            Dim bytes As Byte() = sha256.ComputeHash(Encoding.UTF8.GetBytes(password))
+            Return Convert.ToBase64String(bytes)
+        End Using
+
+    End Function
 End Class

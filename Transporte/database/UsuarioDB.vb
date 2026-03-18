@@ -1,5 +1,6 @@
 ﻿Public Class UsuarioDB
     Private db As New DBHelper()
+
     Public Function CrearUsuario(ByVal pUsuario As Models.Usuarios, ByRef errorMessage As String) As Boolean
         ' Lógica para crear un nuevo usuario en la base de datos
         Using db.GetConnection()
@@ -18,6 +19,12 @@
         End Using
 
         Return False
+    End Function
+
+    Public Function CargarPersonas(ByRef errorMessage As String) As DataTable
+        Dim query As String = "SELECT IdPersona, Username, PasswordHash, Rol, Activo FROM Usuarios"
+
+        Return db.ExecuteQuery(query, Nothing, errorMessage)
     End Function
 
 End Class

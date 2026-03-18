@@ -29,8 +29,8 @@
 <asp:Label ID="lblRol" runat="server" Text="Definir Rol" CssClass="control-label"></asp:Label>
 <asp:DropDownList ID="ddlRol" runat="server" CssClass="form-control">
 <asp:ListItem Text="Rol" Value="" />
-<asp:ListItem Text="Administrador" Value="1" />
-<asp:ListItem Text="Usuario" Value="2" />
+<asp:ListItem Text="Administrador" Value="admin" />
+<asp:ListItem Text="Usuario" Value="user" />
  
     </asp:DropDownList>
 <asp:RequiredFieldValidator ID="rfvRol" runat="server"
