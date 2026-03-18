@@ -9,10 +9,10 @@
         End Sub
 
         Public Sub New(idTipoMulta As Integer, descripcion As String, montoBase As Decimal, activa As Boolean)
-            _idTipoMulta = idTipoMulta
-            _descripcion = descripcion
-            _montoBase = montoBase
-            _activa = activa
+            Me.IdTipoMulta = idTipoMulta
+            Me.Descripcion = descripcion
+            Me.MontoBase = montoBase
+            Me.Activa = activa
         End Sub
 
         Public Property IdTipoMulta As Integer

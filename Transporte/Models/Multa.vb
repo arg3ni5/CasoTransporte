@@ -11,12 +11,12 @@
         End Sub
 
         Public Sub New(idMulta As Integer, idVehiculo As Integer, idTipoMulta As Integer, fecha As Date, montoAplicado As Decimal, pagada As Boolean)
-            _idMulta = idMulta
-            _idVehiculo = idVehiculo
-            _idTipoMulta = idTipoMulta
-            _fecha = fecha
-            _montoAplicado = montoAplicado
-            _pagada = pagada
+            Me.IdMulta = idMulta
+            Me.IdVehiculo = idVehiculo
+            Me.IdTipoMulta = idTipoMulta
+            Me.Fecha = fecha
+            Me.MontoAplicado = montoAplicado
+            Me.Pagada = pagada
         End Sub
 
         Public Property IdMulta As Integer
