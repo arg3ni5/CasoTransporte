@@ -6,7 +6,7 @@
     <title>Tipos de Multa</title>
 
      
-
+     <%--Codigo para darle el estilo al formulario --%>
 
     <style>
         body {
