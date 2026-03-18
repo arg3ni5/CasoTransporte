@@ -23,13 +23,13 @@ Partial Public Class TipoDeMulta
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''txtDescripcion control.
+    '''ddlDescripcion control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDescripcion As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlDescripcion As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''txtMonto control.
@@ -50,13 +50,31 @@ Partial Public Class TipoDeMulta
     Protected WithEvents ddlEstado As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''btnConsulta control.
+    '''btnNuevo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnConsulta As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnNuevo As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnGuardar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnGuardar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnEditar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEditar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnEliminar control.
@@ -66,31 +84,4 @@ Partial Public Class TipoDeMulta
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnEliminar As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnInsertar control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnInsertar As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnModificar control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnModificar As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''gvTipoMulta control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gvTipoMulta As Global.System.Web.UI.WebControls.GridView
 End Class
