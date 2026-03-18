@@ -59,13 +59,13 @@ Partial Public Class frmVehiculos
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control TextIDVehiculo.
+    '''Control txtIDVehiculo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents TextIDVehiculo As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtIDVehiculo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control Label3.
@@ -129,4 +129,13 @@ Partial Public Class frmVehiculos
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents BtnGuardar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control lblResultado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblResultado As Global.System.Web.UI.WebControls.Label
 End Class

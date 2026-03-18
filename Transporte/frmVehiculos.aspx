@@ -19,7 +19,7 @@
 
     <div class="form-group">
         <asp:Label ID="Label2" runat="server" Text="ID del Vehículo" CssClass="control-label"></asp:Label>
-        <asp:TextBox ID="TextIDVehiculo" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="txtIDVehiculo" runat="server" CssClass="form-control"></asp:TextBox>
     </div>
 
     <div class="form-group">
@@ -44,5 +44,11 @@
     </div>
 
     <asp:Button ID="BtnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary my-2" OnClick="BtnGuardar_Click" />
+
+    <asp:Label ID="lblResultado" runat="server" Text="" CssClass="control-label"></asp:Label>
+
+    
+
+    
 
 </asp:Content>
