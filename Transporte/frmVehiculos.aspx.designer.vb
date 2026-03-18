@@ -120,13 +120,4 @@ Partial Public Class frmVehiculos
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddlMarca As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Control BtnGuardar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents BtnGuardar As Global.System.Web.UI.WebControls.Button
 End Class
