@@ -40,10 +40,10 @@
 
     <br />
 
-    <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" />
-    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" />
-    <asp:Button ID="btnEditar" runat="server" Text="Editar" />
+    <asp:Button ID="btnConsulta" runat="server" Text="Consulta" />
     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
+    <asp:Button ID="btnInsertar" runat="server" Text="Insertar" />
+    <asp:Button ID="btnModificar" runat="server" Text="Modificar" />
 
     <br /><br />
 
