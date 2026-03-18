@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class TipoMultaDB
-    'Private db As New DbHelper
+    Private db As New DbHealper
     'Public Function CrearTipoMulta(modTipoMulta As Models.TipoMulta, ByRef errorMessage As String) As Boolean
     '    Try
     '        Dim query As String = "sp_Inserta_TipoMulta"
