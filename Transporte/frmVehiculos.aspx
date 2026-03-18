@@ -43,7 +43,7 @@
         </asp:DropDownList>
     </div>
 
-    <asp:Button ID="BtnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary my-2" OnClick="BtnGuardar_Click" />
+
 
     <asp:Label ID="lblResultado" runat="server" Text="" CssClass="control-label"></asp:Label>
 
