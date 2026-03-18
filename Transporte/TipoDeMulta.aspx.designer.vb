@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class TipoMultas
+Partial Public Class TipoDeMulta
 
     '''<summary>
     '''form1 control.
@@ -23,33 +23,6 @@ Partial Public Class TipoMultas
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''Label1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtIdMulta control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtIdMulta As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Label2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtDescripcion control.
     '''</summary>
     '''<remarks>
@@ -59,15 +32,6 @@ Partial Public Class TipoMultas
     Protected WithEvents txtDescripcion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Label3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtMonto control.
     '''</summary>
     '''<remarks>
@@ -75,6 +39,15 @@ Partial Public Class TipoMultas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMonto As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''ddlEstado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlEstado As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''btnNuevo control.
@@ -113,11 +86,11 @@ Partial Public Class TipoMultas
     Protected WithEvents btnEliminar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''GridViewMultas control.
+    '''gvTipoMulta control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents GridViewMultas As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents gvTipoMulta As Global.System.Web.UI.WebControls.GridView
 End Class
