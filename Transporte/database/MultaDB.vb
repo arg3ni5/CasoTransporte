@@ -1,31 +1,64 @@
-﻿Imports Transporte.Models
+﻿Imports System.Data.SqlClient
+Imports Transporte.Models
 
 Public Class MultaDB
-    'Private db As New DbHelper
-    'Public Function CrearMulta(ByVal modMulta As Models.Multa, ByRef errorMessage As String) As Boolean
-    '    Using db.GetConnection()
-    '        Dim query As String = "INSERT INTO dbo.Multas (IdVehiculo, IdTipoMulta, Fecha, MontoAplicado, Pagada) VALUES (@IdVehiculo, @IdTipoMulta, @Fecha, @MontoAplicado, @Pagada)"
-    '        Dim parameters As New Dictionary(Of String, Object) From {
+    Private db As New DbHealper
+
+    'Public Function CrearMulta(modMulta As Models.Multa, ByRef errorMessage As String) As Boolean
+    '    Try
+    '        Dim query As String = "sp_Inserta_Multa"
+    '        Dim parameters As New List(Of SqlParameter) From {
+    '            New SqlParameter("@IdVehiculo", modMulta.IdVehiculo),
+    '            New SqlParameter("@IdTipoMulta", modMulta.IdTipoMulta),
+    '            New SqlParameter("@Fecha", modMulta.Fecha),
+    '            New SqlParameter("@MontoAplicado", modMulta.MontoAplicado),
+    '            New SqlParameter("@Pagada", modMulta.Pagada)
+    '        }
+    '        Return db.ExecuteNonQuery(query, parameters, errorMessage)
+    '    Catch ex As Exception
+    '        Return False
+    '    End Try
+    'End Function
+
+    'Public Function EliminarMulta(idMulta As Integer, ByRef errorMessage As String) As Boolean
+    '    Try
+    '        Dim query As String = "sp_Elimina_Multa"
+    '        Dim parameters As New List(Of SqlParameter) From {
+    '            New SqlParameter("@IdMulta", idMulta)
+    '        }
+    '        Return db.ExecuteNonQuery(query, parameters, errorMessage)
+    '    Catch ex As Exception
+    '        Return False
+    '    End Try
+    'End Function
+
+    'Public Function ModificarMulta(modMulta As Models.Multa, ByRef errorMessage As String) As Boolean
+    '    Try
+    '        Dim query As String = "sp_Modifica_Multa"
+    '        Dim parameters As New List(Of SqlParameter) From {
+    '            New SqlParameter("@IdVehiculo", modMulta.IdVehiculo),
+    '            New SqlParameter("@IdTipoMulta", modMulta.IdTipoMulta),
+    '            New SqlParameter("@Fecha", modMulta.Fecha),
+    '            New SqlParameter("@MontoAplicado", modMulta.MontoAplicado),
+    '            New SqlParameter("@Pagada", modMulta.Pagada)
+    '        }
+    '        Return db.ExecuteNonQuery(query, parameters, errorMessage)
+    '    Catch ex As Exception
+    '        Return False
+    '    End Try
+    'End Function
+
+    'Public Function ModificarMulta(modMulta As Models.Multa, ByRef errorMessage As String) As Boolean
+    '    Dim query As String = "UPDATE dbo.Multas SET IdVehiculo = @IdVehiculo, IdTipoMulta = @IdTipoMulta, Fecha = @Fecha, MontoAplicado = @MontoAplicado, Pagada = @Pagada WHERE IdMulta = @IdMulta"
+    '    Dim parameters As New Dictionary(Of String, Object) From {
     '            {"@IdVehiculo", modMulta.IdVehiculo},
     '            {"@IdTipoMulta", modMulta.IdTipoMulta},
     '            {"@Fecha", modMulta.Fecha},
     '            {"@MontoAplicado", modMulta.MontoAplicado},
-    '            {"@Pagada", modMulta.Pagada}
-    '        }
-
-    '        Return db.ExecuteNonQuery(query, parameters, errorMessage)
-    '    End Using
-    '    Return True
-    'End Function
-
-    'Public Function EliminarMulta(idMulta As Integer, ByRef errorMessage As String) As Boolean
-    '    Dim query As String = "DELETE FROM dbo.Multas WHERE IdMulta = @IdMulta"
-    '    Dim parameters As New Dictionary(Of String, Object) From {
-    '        {"@IdMulta", idMulta}
+    '            {"@Pagada", modMulta.Pagada},
+    '            {"@IdMulta", modMulta.IdMulta}
     '    }
-
     '    Return db.ExecuteNonQuery(query, parameters, errorMessage)
-
     'End Function
 
     'Public Function ConsultarMulta(idMulta As Integer, ByRef errorMessage As String) As Models.Multa
@@ -51,17 +84,6 @@ Public Class MultaDB
 
     'End Function
 
-    'Public Function ModificarMulta(modMulta As Models.Multa, ByRef errorMessage As String) As Boolean
-    '    Dim query As String = "UPDATE dbo.Multas SET IdVehiculo = @IdVehiculo, IdTipoMulta = @IdTipoMulta, Fecha = @Fecha, MontoAplicado = @MontoAplicado, Pagada = @Pagada WHERE IdMulta = @IdMulta"
-    '    Dim parameters As New Dictionary(Of String, Object) From {
-    '            {"@IdVehiculo", modMulta.IdVehiculo},
-    '            {"@IdTipoMulta", modMulta.IdTipoMulta},
-    '            {"@Fecha", modMulta.Fecha},
-    '            {"@MontoAplicado", modMulta.MontoAplicado},
-    '            {"@Pagada", modMulta.Pagada},
-    '            {"@IdMulta", modMulta.IdMulta}
-    '    }
-    '    Return db.ExecuteNonQuery(query, parameters, errorMessage)
-    'End Function
+
 
 End Class
