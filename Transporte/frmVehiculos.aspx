@@ -34,7 +34,7 @@
 
     <div class="form-group">
         <asp:Label ID="Label5" runat="server" Text="Marca del vehículo" CssClass="control-label"></asp:Label>
-        <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
+        <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-control">
             <asp:ListItem Text="Seleccione la marca" Value="0" />
             <asp:ListItem Text="Toyota" Value="1" />
             <asp:ListItem Text="Honda" Value="2" />
@@ -42,5 +42,7 @@
             <asp:ListItem Text="Mercedes-Benz" Value="4" />
         </asp:DropDownList>
     </div>
+
+    <asp:Button ID="BtnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary my-2" OnClick="BtnGuardar_Click" />
 
 </asp:Content>
