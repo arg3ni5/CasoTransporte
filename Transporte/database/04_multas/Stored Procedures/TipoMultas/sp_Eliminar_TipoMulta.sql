@@ -1,0 +1,10 @@
+-- PROCEDIMIENTO ALMACENADO QUE ELIMINA EL TIPO DE MULTA INDICADO
+CREATE PROC sp_Eliminar_TipoMulta
+(
+@IdTipoMulta int
+)
+AS
+BEGIN
+	DELETE FROM TipoMulta
+	WHERE IdTipoMulta = @IdTipoMulta
+END

@@ -1,36 +1,55 @@
-﻿Public Class TipoMultaDB
-    'Private db As New DbHelper
-    'Public Function CrearTipoMulta(ByVal modTipoMulta As Models.TipoMulta, ByRef errorMessage As String) As Boolean
-    '    Using db.GetConnection()
-    '        Dim query As String = "INSERT INTO dbo.TipoMulta (Descripcion, MontoBase, Activa) VALUES (@Descripcion, @MontoBase, @Activa)"
-    '        Dim parameters As New Dictionary(Of String, Object) From {
-    '            {"@Descripcion", modTipoMulta.Descripcion},
-    '            {"@MontoBase", modTipoMulta.MontoBase},
-    '            {"@Activa", modTipoMulta.Activa}
-    '        }
+﻿Imports System.Data.SqlClient
 
+Public Class TipoMultaDB
+    'Private db As New DbHelper
+    'Public Function CrearTipoMulta(modTipoMulta As Models.TipoMulta, ByRef errorMessage As String) As Boolean
+    '    Try
+    '        Dim query As String = "sp_Inserta_TipoMulta"
+    '        Dim parameters As New List(Of SqlParameter) From {
+    '            New SqlParameter("@Descripcion", modTipoMulta.Descripcion),
+    '            New SqlParameter("@MontoBase", modTipoMulta.MontoBase),
+    '            New SqlParameter("@Activa", modTipoMulta.Activa)
+    '        }
     '        Return db.ExecuteNonQuery(query, parameters, errorMessage)
-    '    End Using
-    '    Return True
+    '    Catch ex As Exception
+    '        Return False
+    '    End Try
     'End Function
 
     'Public Function EliminarTipoMulta(idTipoMulta As Integer, ByRef errorMessage As String) As Boolean
-    '    Dim query As String = "DELETE FROM dbo.TipoMulta WHERE IdTipoMulta = @IdTipoMulta"
-    '    Dim parameters As New Dictionary(Of String, Object) From {
-    '        {"@IdTipoMulta", idTipoMulta}
-    '    }
+    '    Try
+    '        Dim query As String = "sp_Eliminar_TipoMulta"
+    '        Dim parameters As New List(Of SqlParameter) From {
+    '            New SqlParameter("@IdTipoMulta", idTipoMulta)
+    '        }
+    '        Return db.ExecuteNonQuery(query, parameters, errorMessage)
+    '    Catch ex As Exception
+    '        Return False
+    '    End Try
+    'End Function
 
-    '    Return db.ExecuteNonQuery(query, parameters, errorMessage)
-
+    'Public Function ModificarTipoMulta(modTipoMulta As Models.TipoMulta, ByRef errorMessage As String) As Boolean
+    '    Try
+    '        Dim query As String = "sp_Modifica_TipoMulta"
+    '        Dim parameters As New List(Of SqlParameter) From {
+    '            New SqlParameter("@IdTipoMulta", modTipoMulta.IdTipoMulta),
+    '            New SqlParameter("@Descripcion", modTipoMulta.Descripcion),
+    '            New SqlParameter("@MontoBase", modTipoMulta.MontoBase),
+    '            New SqlParameter("@Activa", modTipoMulta.Activa)
+    '        }
+    '        Return db.ExecuteNonQuery(query, parameters, errorMessage)
+    '    Catch ex As Exception
+    '        Return False
+    '    End Try
     'End Function
 
     'Public Function ConsultarTipoMulta(idTipoMulta As Integer, ByRef errorMessage As String) As Models.TipoMulta
-    '    Dim query As String = "SELECT * FROM dbo.TipoMulta WHERE IdTipoMulta = @IdTipoMulta"
-    '    Dim parameters As New Dictionary(Of String, Object) From {
-    '        {"@IdTipoMulta", idTipoMulta}
-    '    }
+    '    Dim query As String = "sp_Consulta_TipoMulta"
+    '    Dim parameters As New List(Of SqlParameter) From {
+    '            New SqlParameter("@IdTipoMulta", idTipoMulta)
+    '        }
+    '    Dim dt As DataTable = db.ExecuteQuery(query, parameters, True, errorMessage)
 
-    '    Dim dt As DataTable = db.ExecuteQuery(query, parameters, errorMessage)
     '    If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
     '        Dim row As DataRow = dt.Rows(0)
     '        Dim tipoMulta As New Models.TipoMulta() With {
@@ -42,17 +61,5 @@
     '        Return tipoMulta
     '    End If
     '    Return Nothing
-
-    'End Function
-
-    'Public Function ModificarTipoMulta(modTipoMulta As Models.TipoMulta, ByRef errorMessage As String) As Boolean
-    '    Dim query As String = "UPDATE dbo.TipoMulta SET Descripcion = @Descripcion, MontoBase = @MontoBase, Activa = @Activa WHERE IdTipoMulta = @IdTipoMulta"
-    '    Dim parameters As New Dictionary(Of String, Object) From {
-    '        {"@Descripcion", modTipoMulta.Descripcion},
-    '        {"@MontoBase", modTipoMulta.MontoBase},
-    '        {"@Activa", modTipoMulta.Activa},
-    '        {"@IdTipoMulta", modTipoMulta.IdTipoMulta}
-    '    }
-    '    Return db.ExecuteNonQuery(query, parameters, errorMessage)
     'End Function
 End Class
