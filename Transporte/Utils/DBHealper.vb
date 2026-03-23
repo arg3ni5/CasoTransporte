@@ -17,6 +17,7 @@ Public Class DbHealper
     End Function ' Fin del método GetConnection
 
     ' INSERT TipoMulta
+<<<<<<< HEAD
     Public Function InsertTipoMulta(descripcion As String, montoBase As Decimal, activa As Boolean, ByRef errorMessage As String) As Boolean ' Método para insertar un nuevo registro en la tabla TipoMulta
         Dim query As String = "INSERT INTO TipoMulta (Descripcion, MontoBase, Activa) VALUES (@Descripcion, @MontoBase, @Activa)" ' Consulta SQL para insertar un nuevo registro en la tabla TipoMulta
         Dim parameters As New Dictionary(Of String, Object) From {
@@ -113,3 +114,111 @@ Public Class DbHealper
         End Using ' Fin del bloque Using para la conexión, asegurando que se cierre correctamente al finalizar el bloque Using
     End Function ' Fin del método ExecuteQuery para ejecutar consultas SQL de tipo SELECT, y devolver el resultado como un DataTable
 End Class ' Fin de la clase DbHealper, que proporciona métodos para interactuar con la base de datos, incluyendo operaciones de INSERT, UPDATE, DELETE y SELECT para la tabla TipoMulta, utilizando un enfoque genérico para ejecutar consultas SQL y manejar errores de manera eficiente.
+=======
+    'Public Function InsertTipoMulta(descripcion As String, montoBase As Decimal, activa As Boolean, ByRef errorMessage As String) As Boolean
+    '    Dim query As String = "INSERT INTO TipoMulta (Descripcion, MontoBase, Activa) VALUES (@Descripcion, @MontoBase, @Activa)"
+    '    Dim parameters As New Dictionary(Of String, Object) From {
+    '        {"@Descripcion", descripcion},
+    '        {"@MontoBase", montoBase},
+    '        {"@Activa", activa}
+    '    }
+    '    Return ExecuteNonQuery(query, parameters, errorMessage)
+    'End Function
+
+    '' UPDATE TipoMulta
+    'Public Function UpdateTipoMulta(id As Integer, descripcion As String, montoBase As Decimal, activa As Boolean, ByRef errorMessage As String) As Boolean
+    '    Dim query As String = "UPDATE TipoMulta SET Descripcion=@Descripcion, MontoBase=@MontoBase, Activa=@Activa WHERE IdTipoMulta=@Id"
+    '    Dim parameters As New Dictionary(Of String, Object) From {
+    '        {"@Id", id},
+    '        {"@Descripcion", descripcion},
+    '        {"@MontoBase", montoBase},
+    '        {"@Activa", activa}
+    '    }
+    '    Return ExecuteNonQuery(query, parameters, errorMessage)
+    'End Function
+
+    '' DELETE TipoMulta
+    'Public Function DeleteTipoMulta(id As Integer, ByRef errorMessage As String) As Boolean
+    '    Dim query As String = "DELETE FROM TipoMulta WHERE IdTipoMulta=@Id"
+    '    Dim parameters As New Dictionary(Of String, Object) From {
+    '        {"@Id", id}
+    '    }
+    '    Return ExecuteNonQuery(query, parameters, errorMessage)
+    'End Function
+
+    '' SELECT TipoMulta
+    'Public Function GetTipoMulta(Optional id As Integer? = Nothing, Optional ByRef errorMessage As String = "") As DataTable
+    '    Dim query As String = "SELECT IdTipoMulta, Descripcion, MontoBase, Activa FROM TipoMulta"
+    '    Dim parameters As Dictionary(Of String, Object) = Nothing
+
+    '    If id.HasValue Then
+    '        query &= " WHERE IdTipoMulta=@Id"
+    '        parameters = New Dictionary(Of String, Object) From {
+    '            {"@Id", id.Value}
+    '        }
+    '    End If
+
+    '    Return ExecuteQuery(query, parameters, errorMessage)
+    'End Function
+
+    ' Método genérico para ejecutar INSERT/UPDATE/DELETE
+    Public Function ExecuteNonQuery(query As String, parameters As List(Of SqlParameter), ByRef errorMessage As String) As Boolean
+        If String.IsNullOrWhiteSpace(query) Then
+            Throw New ArgumentException("La consulta no puede estar vacía")
+        End If
+
+        Using conn As SqlConnection = GetConnection()
+            Using cmd As New SqlCommand(query, conn)
+
+                If parameters IsNot Nothing Then
+                    cmd.Parameters.AddRange(parameters.ToArray())
+                End If
+
+                cmd.CommandType = CommandType.StoredProcedure
+
+                Try
+                    cmd.ExecuteNonQuery()
+                    Return True
+                Catch ex As Exception
+                    errorMessage = "Error al ejecutar la consulta: " & ex.Message
+                    Return False
+                End Try
+            End Using
+        End Using
+    End Function
+
+    ' Método genérico para ejecutar SELECT
+    Public Function ExecuteQuery(ByRef errorMessage As String, query As String, esStoredProcedure As Boolean, Optional parameters As List(Of SqlParameter) = Nothing) As DataTable
+        If String.IsNullOrWhiteSpace(query) Then
+            Throw New ArgumentException("La consulta no puede estar vacía")
+        End If
+
+        Dim dt As New DataTable()
+        Using conn As SqlConnection = GetConnection()
+            Using cmd As New SqlCommand(query, conn)
+                If parameters IsNot Nothing Then
+                    cmd.Parameters.AddRange(parameters.ToArray())
+                End If
+
+                If esStoredProcedure Then
+                    cmd.CommandType = CommandType.StoredProcedure
+                End If
+
+                Try
+                    If conn.State = ConnectionState.Closed Then
+                        conn.Open()
+                    End If
+
+                    Using adapter As New SqlDataAdapter(cmd)
+                        adapter.Fill(dt)
+                    End Using
+                    Return dt
+                Catch ex As Exception
+                    errorMessage = "Error al ejecutar la consulta: " & ex.Message
+                    Return Nothing
+                End Try
+            End Using
+        End Using
+    End Function
+End Class
+>>>>>>> dcce4205555c08578f67900f394ecdd0b6db04e6

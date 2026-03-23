@@ -5,6 +5,9 @@
 <head runat="server">
     <title>Tipos de Multa</title>
 
+     
+     <%--Codigo para darle el estilo al formulario --%>
+
     <style>
         body {
             font-family: Arial;
@@ -78,15 +81,20 @@
 
                 <div class="form-group">
                     <label>Descripción</label>
-                    <asp:DropDownList ID="ddlDescripcion" runat="server">
+                    <asp:DropDownList 
+                        ID="ddlDescripcion" 
+                        runat="server"
+                        AutoPostBack="True"
+                        OnSelectedIndexChanged="ddlDescripcion_SelectedIndexChanged">
+                        <asp:ListItem Text="" ></asp:ListItem>
                         <asp:ListItem Text="Exceso de velocidad" Value="1"></asp:ListItem>
                         <asp:ListItem Text="Estacionado en lugar prohibido" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="No utiliza casco" />
-                        <asp:ListItem Text="Maneja en estado ebriedad" />
-                        <asp:ListItem Text="Maneja sin licencia" />
-                        <asp:ListItem Text="Irrespeto un alto" />
-                        <asp:ListItem Text="No utiliza el cinturon de seguridad" />
-                        <asp:ListItem Text="Utiliza el celular mientras maneja" />
+                        <asp:ListItem Text="No utiliza casco" Value="3"></asp:ListItem>
+                        <asp:ListItem Text="Maneja en estado ebriedad" Value="4"></asp:ListItem>
+                        <asp:ListItem Text="Maneja sin licencia" Value="5"></asp:ListItem>
+                        <asp:ListItem Text="Irrespeto un alto" Value="6"></asp:ListItem>
+                        <asp:ListItem Text="No utiliza el cinturon de seguridad" Value="7"></asp:ListItem>
+                        <asp:ListItem Text="Utiliza el celular mientras maneja" Value="8"></asp:ListItem>
 
 
 
