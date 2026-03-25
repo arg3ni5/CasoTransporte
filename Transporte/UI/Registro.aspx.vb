@@ -17,6 +17,7 @@ Public Class Registro
         persona.NombreCompleto = txtNombre.Text
         persona.Identificacion = txtIdentificacion.Text
         persona.Correo = txtEmail.Text
+
         usuario.Username = txtUsername.Text
 
         Dim encryptor As New Simple3Des("frase$-secreta-123")
@@ -26,8 +27,11 @@ Public Class Registro
         usuario.Activo = True
 
         Dim errorMessage As String = String.Empty
+        Dim idPersona As Integer = dbPersona.CrearPersona(persona, errorMessage)
 
-        If dbPersona.CrearPersona(persona, errorMessage) Then
+        If idPersona > 0 Then 'Si se creó la persona correctamente, procedemos a crear el usuario
+            usuario.IdPersona = idPersona
+
             If dbUsuario.CrearUsuario(usuario, errorMessage) Then
                 SwalUtils.ShowSwal(Me, "Registro exitoso", "El usuario ha sido registrado correctamente.")
                 ClearForm()
