@@ -297,6 +297,7 @@
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Utils\DBHelper.vb" />
+    <Compile Include="Utils\ErrorLogger.vb" />
     <Compile Include="Utils\Simple3Des.vb" />
     <Compile Include="Utils\SwalUtils.vb" />
     <Compile Include="ViewSwitcher.ascx.vb">
