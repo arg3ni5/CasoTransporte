@@ -92,9 +92,10 @@
                     <span class="text-muted">¿Ya tiene cuenta?</span>
                     <a href="Login.aspx" class="text-decoration-none fw-bold ms-1" style="color: #1ECECB;">Iniciar sesión</a>
                 </div>
-
             </div>
         </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </form>
 
     <asp:PlaceHolder runat="server">
