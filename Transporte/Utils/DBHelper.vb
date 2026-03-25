@@ -16,6 +16,7 @@ Public Class DBHelper
             conn.Open()
         Catch ex As Exception
             conn.Dispose() 'limpia la conexion
+            _logger.LogError(ex, "Error abriendo conexión")
             Throw New Exception("Error al abrir la conexión: " & ex.Message)
         End Try
         Return conn
@@ -41,6 +42,7 @@ Public Class DBHelper
                     Return True
                 Catch ex As Exception
                     errorMessage = "Error al ejecutar la consulta: " & ex.Message
+                    _logger.LogError(ex, "Error ejecutando consulta: " & query)
                     Return False
                 End Try
             End Using
@@ -72,6 +74,7 @@ Public Class DBHelper
                     End Using
                     Return dt
                 Catch ex As Exception
+                    _logger.LogError(ex, "Error ejecutando consulta: " & query)
                     errorMessage = "Error al ejecutar la consulta: " & ex.Message
                     Return Nothing
                 End Try
@@ -98,6 +101,7 @@ Public Class DBHelper
                 Try
                     Return cmd.ExecuteScalar() ' Devuelve el primer valor de la primera fila del resultado
                 Catch ex As Exception
+                    _logger.LogError(ex, "Error ejecutando consulta: " & query)
                     errorMessage = "Error al ejecutar la consulta: " & ex.Message
                     Return Nothing
                 End Try
