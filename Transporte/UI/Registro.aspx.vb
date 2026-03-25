@@ -1,4 +1,4 @@
-﻿Public Class Registro
+Public Class Registro
     Inherits System.Web.UI.Page
 
     Private dbPersona As New PersonaDB()
