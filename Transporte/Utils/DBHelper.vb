@@ -74,4 +74,28 @@ Public Class DBHelper
         End Using
         Return Nothing
     End Function
+
+    'Función para ejecutar una consulta que devuelve un solo valor (por ejemplo, COUNT, SUM, etc.)
+    Public Function ExecuteScalar(query As String, parameters As Dictionary(Of String, Object), ByRef errorMessage As String) As Object
+        If String.IsNullOrWhiteSpace(query) Then
+            Throw New ArgumentException("La consulta no puede estar vacía")
+        End If
+
+        Using conn As SqlConnection = GetConnection()
+            Using cmd As New SqlCommand(query, conn)
+                If parameters IsNot Nothing Then
+                    For Each p In parameters
+                        cmd.Parameters.AddWithValue(p.Key, p.Value)
+                    Next
+                End If
+
+                Try
+                    Return cmd.ExecuteScalar() ' Devuelve el primer valor de la primera fila del resultado
+                Catch ex As Exception
+                    errorMessage = "Error al ejecutar la consulta: " & ex.Message
+                    Return Nothing
+                End Try
+            End Using
+        End Using
+    End Function
 End Class
