@@ -1,7 +1,13 @@
 ﻿Imports System.Data.SqlClient
-Public Class DBHelper
-    Private connectionString As String = ConfigurationManager.ConnectionStrings("ConexionDB").ConnectionString
+Imports System.Configuration
 
+Public Class DBHelper
+    Private ReadOnly connectionString As String = ConfigurationManager.ConnectionStrings("ConexionDB").ConnectionString
+    Private ReadOnly _logger As ErrorLogger
+
+    Public Sub New()
+        _logger = New ErrorLogger(connectionString)
+    End Sub
 
 
     Public Function GetConnection() As SqlConnection
