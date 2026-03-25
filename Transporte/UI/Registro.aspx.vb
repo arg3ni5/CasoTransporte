@@ -19,7 +19,7 @@ Public Class Registro
         persona.Correo = txtEmail.Text
         usuario.Username = txtUsername.Text
 
-        Dim encryptor As New Simple3Des("your-encryption-key")
+        Dim encryptor As New Simple3Des("frase$-secreta-123")
         usuario.PasswordHash = encryptor.EncryptData(txtPass.Text)
 
         usuario.Rol = ddlRol.SelectedValue
