@@ -4,7 +4,7 @@
     Public Function CrearPersona(ByVal pPersona As Models.Persona, ByRef errorMessage As String) As Int32
         'Lógica para crear una nueva persona en la base de datos
         Using db.GetConnection()
-            Dim query As String = "INSERT INTO Personas (Identificacion, NombreCompleto, Correo) 
+            Dim query As String = "INSERT INTO Personas11111 (Identificacion, NombreCompleto, Correo) 
             VALUES (@Identificacion, @NombreCompleto, @Correo); SELECT SCOPE_IDENTITY()"
 
 
