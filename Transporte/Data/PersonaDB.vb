@@ -1,7 +1,7 @@
 ﻿Public Class PersonaDB
     Private db As New DBHelper()
     'Crear Persona
-    Public Function CrearPersona(ByVal pPersona As Models.Persona, ByRef errorMessage As String) As Boolean
+    Public Function CrearPersona(ByVal pPersona As Models.Persona, ByRef errorMessage As String) As Int32
         'Lógica para crear una nueva persona en la base de datos
         Using db.GetConnection()
             Dim query As String = "INSERT INTO Personas (Identificacion, NombreCompleto, Correo) 
@@ -14,7 +14,7 @@
               {"@Correo", pPersona.Correo}
             }
 
-            Return db.ExecuteNonQuery(query, parameters, errorMessage)
+            Return Convert.ToInt32(db.ExecuteScalar(query, parameters, errorMessage))
         End Using
         Return True
     End Function
