@@ -47,8 +47,4 @@
 
     <asp:Label ID="lblResultado" runat="server" Text="" CssClass="control-label"></asp:Label>
 
-    
-
-    
-
 </asp:Content>
