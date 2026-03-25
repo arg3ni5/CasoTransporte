@@ -1,3 +1,5 @@
+Imports Transporte.Models
+Imports Transporte.Utils
 Public Class Registro
     Inherits System.Web.UI.Page
 
@@ -10,7 +12,7 @@ Public Class Registro
 
     Protected Sub btnRegistrar_Click(sender As Object, e As EventArgs)
         Dim persona As New Persona()
-        Dim usuario As New Usuario()
+        Dim usuario As New Usuarios()
 
         persona.NombreCompleto = txtNombre.Text
         persona.Identificacion = txtIdentificacion.Text
