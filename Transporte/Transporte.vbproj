@@ -143,6 +143,14 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="database\04_multas\Stored Procedures\Multas\sp_Elimina_Multa.sql" />
+    <Content Include="database\04_multas\Stored Procedures\Multas\sp_Inserta_Multa.sql" />
+    <Content Include="database\04_multas\Stored Procedures\Multas\sp_Modifica_Multa.sql" />
+    <Content Include="database\04_multas\Stored Procedures\Multas\sp_Consulta_Multa.sql" />
+    <Content Include="database\04_multas\Stored Procedures\TipoMultas\sp_Modifica_TipoMulta.sql" />
+    <Content Include="database\04_multas\Stored Procedures\TipoMultas\sp_Consulta_TipoMulta.sql" />
+    <Content Include="database\04_multas\Stored Procedures\TipoMultas\sp_Eliminar_TipoMulta.sql" />
+    <Content Include="database\04_multas\Stored Procedures\TipoMultas\sp_Inserta_TipoMulta.sql" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -212,6 +220,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="TipoDeMulta.aspx" />
     <Content Include="UI\Login.aspx" />
     <Content Include="UI\Registro.aspx" />
     <Content Include="Usuarios.aspx" />
@@ -235,8 +244,8 @@
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="database\UsuarioDB.vb" />
-    <Compile Include="Data\PersonaDB.vb" />
+    <Compile Include="database\MultaDB.vb" />
+    <Compile Include="database\TipoMultaDB.vb" />
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -249,6 +258,8 @@
     </Compile>
     <Compile Include="Models\Persona.vb" />
     <Compile Include="Models\Usuarios.vb" />
+    <Compile Include="Models\Multa.vb" />
+    <Compile Include="Models\TipoMulta.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -300,6 +311,13 @@
     <Compile Include="Utils\ErrorLogger.vb" />
     <Compile Include="Utils\Simple3Des.vb" />
     <Compile Include="Utils\SwalUtils.vb" />
+    <Compile Include="TipoDeMulta.aspx.designer.vb">
+      <DependentUpon>TipoDeMulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TipoDeMulta.aspx.vb">
+      <DependentUpon>TipoDeMulta.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.vb">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -348,7 +366,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
     <Folder Include="Services\" />
+    <Folder Include="UI\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
