@@ -51,7 +51,7 @@ Public Class DBHelper
 
     Public Function ExecuteQuery(query As String,
         parameters As Dictionary(Of String, Object),
-        errorMessage As String) As DataTable
+        errorMessage As String, Optional useProcedimiento As Boolean = False) As DataTable
 
         'Validar que la consulta no esté vacía
         If String.IsNullOrWhiteSpace(query) Then
@@ -61,6 +61,11 @@ Public Class DBHelper
 
         Using conn As SqlConnection = GetConnection()
             Using cmd As New SqlCommand(query, conn)
+
+                If useProcedimiento Then
+                    cmd.CommandType = CommandType.StoredProcedure
+                End If
+
 
                 If parameters IsNot Nothing Then
                     For Each p In parameters

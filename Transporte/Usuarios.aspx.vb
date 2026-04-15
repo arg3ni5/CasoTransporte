@@ -10,6 +10,14 @@ Public Class Usuarios1
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             CargarPersonas()
+
+            If Session("User") Is Nothing Then
+                Response.Redirect("/UI/Login", False)
+            End If
+
+            If Session("Rol") = "ADMIN" Then
+                Response.Redirect("/", False)
+            End If
         End If
     End Sub
 
