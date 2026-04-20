@@ -164,6 +164,7 @@
     <Content Include="database\04_multas\01_schema_temporal.sql" />
     <Content Include="database\04_multas\02_seed.sql" />
     <Content Include="database\04_multas\03_schema_final.sql" />
+    <Content Include="Multas.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -255,6 +256,13 @@
     </Compile>
     <Compile Include="Models\Multa.vb" />
     <Compile Include="Models\TipoMulta.vb" />
+    <Compile Include="Multas.aspx.designer.vb">
+      <DependentUpon>Multas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Multas.aspx.vb">
+      <DependentUpon>Multas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
