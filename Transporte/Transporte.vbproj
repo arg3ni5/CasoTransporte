@@ -220,6 +220,7 @@
     <Compile Include="database\MultaDB.vb" />
     <Compile Include="database\TipoMultaDB.vb" />
     <Compile Include="database\PropietarioDB.vb" />
+    <Compile Include="Data\PersonaDB.vb" />
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -362,9 +363,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
     <Folder Include="Services\" />
-    <Folder Include="UI\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
