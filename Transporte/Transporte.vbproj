@@ -220,6 +220,7 @@
     <Compile Include="database\MultaDB.vb" />
     <Compile Include="database\TipoMultaDB.vb" />
     <Compile Include="database\PropietarioDB.vb" />
+    <Compile Include="Data\UsuarioDB.vb" />
     <Compile Include="Data\PersonaDB.vb" />
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
@@ -232,6 +233,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Persona.vb" />
+    <Compile Include="Models\Propietario.vb" />
     <Compile Include="Models\Usuarios.vb" />
     <Compile Include="Models\Multa.vb" />
     <Compile Include="Models\TipoMulta.vb" />
